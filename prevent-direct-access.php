@@ -15,6 +15,7 @@ include 'includes/js-loader.php';
 include 'includes/helper.php';
 
 require_once dirname( __FILE__ ) . '/includes/function.php';
+include dirname(__FILE__) . '/includes/db-init.php';
 
 class Pda_Admin {
 
@@ -22,7 +23,6 @@ class Pda_Admin {
     private $db;
     function __construct() {
         $this->pda_function = new Pda_Function();
-        include dirname(__FILE__) . '/includes/db-init.php';
         $this->db = new Pda_Database();
         add_filter( 'manage_upload_columns', array($this, 'add_upload_columns') );
         add_action( 'manage_media_custom_column', array($this, 'media_custom_columns'), 0, 2 );
@@ -241,7 +241,6 @@ class Pda_Admin {
     }
 
     public function plugin_uninstall() {
-    	include dirname(__FILE__) . '/includes/db-init.php';
     	remove_action( 'mod_rewrite_rules', array($this, 'htaccess_contents') );
         $GLOBALS['wp_rewrite']->flush_rules();
         Pda_Database::uninstall_static();
