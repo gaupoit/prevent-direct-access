@@ -241,9 +241,6 @@ class Pda_Admin {
     }
 
     public function plugin_uninstall() {
-    	flush_rewrite_rules();
-    	remove_action( 'mod_rewrite_rules', array($this, 'htaccess_contents') );
-        $GLOBALS['wp_rewrite']->flush_rules();
         Pda_Database::uninstall_static();
     }
 
