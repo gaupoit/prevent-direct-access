@@ -8,7 +8,7 @@ class Pda_Database {
 	private $jal_db_version;
 
 	public function __construct() {
-		$this->jal_db_version = '1.1';
+		$this->jal_db_version = '1.0';
 	}
 
 	function install() {
