@@ -19,9 +19,11 @@ require_once dirname( __FILE__ ) . '/includes/function.php';
 class Pda_Admin {
 
     private $pda_function;
-
+    private $db;
     function __construct() {
         $this->pda_function = new Pda_Function();
+        include dirname(__FILE__) . '/includes/db-init.php';
+        $this->db = new Pda_Database();
         add_filter( 'manage_upload_columns', array($this, 'add_upload_columns') );
         add_action( 'manage_media_custom_column', array($this, 'media_custom_columns'), 0, 2 );
         add_action( 'admin_enqueue_scripts', array('Pda_JS_Loader', 'admin_load_js') );
@@ -234,21 +236,15 @@ class Pda_Admin {
 
     public function plugin_install() {
         flush_rewrite_rules();
-        include dirname(__FILE__) . '/includes/db-init.php';
-        $db = new Pda_Database();
-        $db->install();
+        $this->db->install();
     }
 
     public function plugin_uninstall() {
-        include dirname(__FILE__) . '/includes/db-init.php';
-        $db = new Pda_Database();
-        $db->uninstall();
+        $this->db->uninstall();
     }
 
     public function pda_update_db_check() {
-        include dirname(__FILE__) . '/includes/db-init.php';
-        $db = new Pda_Database();
-        $db->install();
+        $this->db->install();
     }
 }
 
