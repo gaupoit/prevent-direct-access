@@ -87,6 +87,7 @@ class Pda_Admin {
             error_log( $is_htaccess_writable, 0 );
 
             $plugin = plugin_basename(__FILE__);
+            error_log ( ".htaccess is writeable: " . $is_htaccess_writable);
             if ( $is_htaccess_writable !== true && is_plugin_active($plugin)) {
                 ?>
                 <div class="error is-dismissible notice">
@@ -240,6 +241,7 @@ class Pda_Admin {
     }
 
     public function plugin_uninstall() {
+    	$this->deactivate();
         $this->db->uninstall();
     }
 
