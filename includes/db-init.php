@@ -60,6 +60,12 @@ class Pda_Database {
 		$table_name = $wpdb->prefix . 'prevent_direct_access';
 		$wpdb->query( "DROP TABLE IF EXISTS $table_name" );
 	}
+
+	static function uninstall_static() {
+		global $wpdb;
+		$table_name = $wpdb->prefix . 'prevent_direct_access';
+		$wpdb->query( "DROP TABLE IF EXISTS $table_name" );
+	}
 }
 
 ?>

@@ -241,8 +241,10 @@ class Pda_Admin {
     }
 
     public function plugin_uninstall() {
-    	$this->deactivate();
-        $this->db->uninstall();
+    	include dirname(__FILE__) . '/includes/db-init.php';
+    	remove_action( 'mod_rewrite_rules', array($this, 'htaccess_contents') );
+        $GLOBALS['wp_rewrite']->flush_rules();
+        Pda_Database::uninstall_static();
     }
 
     public function pda_update_db_check() {
