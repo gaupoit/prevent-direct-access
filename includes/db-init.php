@@ -32,7 +32,7 @@ class Pda_Database {
 			require_once ABSPATH . 'wp-admin/includes/upgrade.php';
 			dbDelta( $sql );
 			// $wpdb->query( $sql );
-			add_option( 'jal_db_version', $this->$jal_db_version );
+			add_option( 'jal_db_version', $this->jal_db_version );
 		}
 
 		$installed_ver = get_option( "jal_db_version" );
