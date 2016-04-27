@@ -233,6 +233,7 @@ class Pda_Admin {
     public function deactivate() {
         remove_action( 'mod_rewrite_rules', array($this, 'htaccess_contents') );
         $GLOBALS['wp_rewrite']->flush_rules();
+        $this->db->remove_db_options();
     }
 
     public function plugin_install() {
